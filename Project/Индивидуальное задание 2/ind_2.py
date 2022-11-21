@@ -2,7 +2,10 @@
 # _*_ coding: utf-8 _*_
 
 import sys
-from package import *
+from package.add import get_plane
+from package.list import display_planes
+from package.select import select_planes
+from package.help import help
 
 
 def main():
@@ -23,7 +26,7 @@ def main():
 
         elif command == 'add':
             # Запросить данные о самолете.
-            plane = add.get_plane()
+            plane = get_plane()
 
             # Добавить словарь в список.
             planes.append(plane)
@@ -33,7 +36,7 @@ def main():
 
         elif command == 'list':
             # Отобразить все самолеты.
-            list.display_planes(planes)
+            display_planes(planes)
 
         elif command.startswith('select '):
             # Разбить команду на части для выделения пункта назначения.
@@ -41,9 +44,9 @@ def main():
             com = part[1]
 
             # Выбрать самолеты заданного типа
-            selected = select.select_planes(planes, com)
+            selected = select_planes(planes, com)
             # Отобразить выбранные самолеты
-            list.display_planes(selected)
+            display_planes(selected)
 
         elif command == 'help':
             help()
